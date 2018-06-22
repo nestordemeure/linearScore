@@ -2,11 +2,11 @@
 
 ## Problem statement
 
-We have objects described by several scores.
-Given two objects, when all scores agree it is easy to establish the better one (pareto dominance).
+We have objects described by several evaluations.
+Given two objects, when all evaluations agree it is easy to establish the better one (pareto dominance).
 Otherwise we need a way to make our choice.  
 
-Given a database of cases in which a humans choose the best of two or more options, we want to establish a linear combinaison of the scores that best approximate the unknown human criteria (pareto front).
+Given a database of cases in which a humans choose the best of two or more options, we want to establish a linear combinaison of the evaluations that best approximate the unknown human criteria (pareto front).
 Note that this is not a classic formulation of a regression or classification problem.  
 
 Our solution being linear it is only an approximation of the pareto front but it is very easy to compute, optimal (among linear approximation) and can be updated on the fly given new human data.
@@ -34,4 +34,8 @@ The best linear separator between two class is orthogonal to the vector going fr
 Which here translates to our separator being orthogonal to the vector going from the origin to the mean of the differences.
 Meaning that the coordinate of the mean are the score we are looking for.  
 
-We use only non trivially separable couples because the other couples are in a quadrant that contains no informations.
+We use only non trivially separable couples because the other couples are in a quadrant that contains no informations and hence can be ignored (as long as we can recover from a mean that is not in this same quadrant).
+
+## References
+
+I found no such algorithm in the litterature but it seems highly probable that it is only a reinvention of an existing idea.
