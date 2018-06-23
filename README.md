@@ -14,13 +14,13 @@ Our solution being linear it is only an approximation but it is very easy to com
 
 ## Algorithm
 
-- normalize the units of the data (if dealing with lenght and area, take the sqrt of the areas).
-- normalize the data relative to the problem (if a quantity growths linearly with the problem size, divide it by the problem size to insure that you will be able to transfer knownledge from your training problems to your testing problems).
-- Collect the couples (winner,loser) that are not trivial to decide (pareto dominance of the winner over the loser).
+- normalize the units of the data (if dealing with lenght and area : take the sqrt of the areas, etc).
+- normalize the data relative to the problem (if a quantity growths linearly with the problem size, divide it by the problem size to insure that you will be able to transfer knownledge from your training samples to your testing samples).
+- Collect the couples (winner,loser) that are not trivial to decide (no pareto dominance of the winner over the loser).
 - Compute their differences `dif = winner - loser`.
 - Average the coordinates of the differences.
 - if the average has a negative coordinate, fix it to zero (to force the average into the pareto dominance area).
-- if all the coordinates of the averages are 0 then fixe them to 1 (we have no information : equal weight for all score).
+- if all the coordinates of the average are 0 then fixe them to 1 (we have no information : equal weight for all score).
 - the coordinates are the weights for our scoring function
 
 To compare two solutions, we first check if one of them is pareto dominant, otherwise we use our scoring function.
@@ -33,10 +33,9 @@ The problem is symetrical, `score(diff) > 0 => score(-diff) < 0` which mean that
 
 A very simple linear separator between two class is the line equidistant to their respective mean.
 Here it translates to a separator orthogonal to the vector going from the origin to the mean of the differences.
-Meaning that we can use the coordinate of the mean as the score we are looking for.
-For small smaple sizes the median might be a more robust estimator, it might be worth exploring (but if we accept to increase the complexity here why not go all the way and use a soft margin minimizer...).  
+Meaning that we can use the coordinate of the mean as the score we are looking for. 
 
-We only use datapoint with no pareto dominance since they are the only one to reflect the human criteria (being non trivially separable). This design choice is debatable.
+We only use datapoints with no pareto dominance since they are the only one to reflect the human criteria (being non trivially separable). This design choice is debatable.
 
 ## References
 
