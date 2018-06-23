@@ -61,7 +61,7 @@ let computeScore trainingData =
 /// None means that it cannot be decided strictly
 let paretoBigger v1 v2 =
    if Array.forall2 (>=) v1 v2 then Some true
-   elif Array.forall2 (<=) v1 v2 then Some false
+   elif Array.forall2 (<) v1 v2 then Some false
    else None
 
 /// return score(v1) >= score(v2)
