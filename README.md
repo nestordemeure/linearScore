@@ -1,8 +1,11 @@
 # linearScore
 
+Computes a linear scoring function for multicriteria optimization (with an emphasis on simplicity of method).
+
 ## Problem statement
 
 We have objects described by several evaluations.
+We are trying to **maximise** those evaluations.
 Given two objects, when all evaluations agree it is easy to establish the better one (pareto dominance).
 Otherwise we need a way to make our choice.  
 
@@ -28,13 +31,15 @@ To compare two solutions, we first check if one of them is pareto dominant, othe
 
 The algorithm relies on the fact that the score is linear meaning that `score(x) > score(y) => score(x - y) > 0`.  
 
-The problem is simetrical, `score(diff) > 0 => score(-diff) < 0` which mean that we could see it as the search for a linear separation between the differences and their opposite (the problem can be seen as very particular a classification problem).  
+The problem is simetrical, `score(diff) > 0 => score(-diff) < 0` which mean that we could see it as the search for a linear separation between the differences and their opposite (the problem can be seen as a particular a classification problem).  
 
-The best linear separator between two class is orthogonal to the vector going from the mean of one class to the other.
-Which here translates to our separator being orthogonal to the vector going from the origin to the mean of the differences.
-Meaning that the coordinate of the mean are the score we are looking for.  
+A very simple linear separator between two class is the line equidistant to their respective mean.
+Here it translates to a separator orthogonal to the vector going from the origin to the mean of the differences.
+Meaning that we can use the coordinate of the mean as the score we are looking for.
+For small smaple sizes the median might be a more robust estimator, it might be worth exploring (but if we accept to increase the complexity here why not go all the way and use a soft margin minimizer...).  
 
 We use only non trivially separable couples because the other couples are in a quadrant that contains no informations and hence can be ignored (as long as we can recover from a mean that is not in this same quadrant).
+But this choice is debatable.
 
 ## References
 
