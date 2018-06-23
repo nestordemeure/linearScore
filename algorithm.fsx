@@ -80,7 +80,9 @@ let bigger weights v1 v2 =
 
 /// takes training data and returns a comparaison function
 let buildComparaison trainingData =
-   bigger (computeScore trainingData)
+   let weights = computeScore trainingData
+   printfn "The weights are %A" weights
+   bigger weights
 
 //-----------------------------------------------------------------------------
 // DEMO
