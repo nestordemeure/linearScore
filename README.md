@@ -4,15 +4,13 @@ Computes a linear scoring function for multicriteria optimization (with an empha
 
 ## Problem statement
 
-We have objects described by several evaluations.
-We are trying to **maximise** those evaluations.
+We have objects described by several criteria. We are trying to **maximise** those criteria.
 Given two objects, when all evaluations agree it is easy to establish the better one (pareto dominance).
 Otherwise we need a way to make our choice.  
 
-Given a database of cases in which a humans choose the best of two or more options, we want to establish a linear combinaison of the evaluations that best approximate the unknown human criteria (pareto front).
-Note that this is not a classic formulation of a regression or classification problem.  
+Given a database of cases in which a humans choose the best of two or more options, we want to establish a linear combinaison of the criteria that best approximate the unknown human criteria (pareto front).  
 
-Our solution being linear it is only an approximation of the pareto front but it is very easy to compute, optimal (among linear approximation) and can be updated on the fly given new human data.
+Our solution being linear it is only an approximation but it is very easy to compute and can be updated on the fly given new human data.
 
 ## Algorithm
 
